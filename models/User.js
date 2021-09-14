@@ -29,11 +29,17 @@ const UserSchema = new mongoose.Schema(
     role: {
       type: String,
       enum: ["admin", "member"],
+      default: "admin",
     },
-    phoneNumber: {
+    mobile: {
       type: Number,
       trim: true,
       required: true,
+    },
+    member: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Member",
+      required: false,
     },
     salt: String,
   },

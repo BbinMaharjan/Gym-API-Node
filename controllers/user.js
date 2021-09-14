@@ -14,7 +14,7 @@ exports.getAllUsers = async (req, res) => {
   // create users
 exports.registerUser = async (req, res) => {
     try {
-      const { name, email, address, gender, password, phoneNumber } = req.body;
+      const { name, email, address, gender, password, mobile } = req.body;
   
       const errors = validationResult(req);
       if (!errors.isEmpty()) {
@@ -33,7 +33,7 @@ exports.registerUser = async (req, res) => {
         address,
         gender,
         password,
-        phoneNumber,
+        mobile,
       });
       await user.save();
       res.status(200).json({ success: user });
