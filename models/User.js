@@ -14,32 +14,36 @@ const UserSchema = new mongoose.Schema(
       trim: true,
       required: true,
     },
-    address: {
-      type: String,
-      required: true,
-    },
-    gender: {
-      type: String,
-      enum: ["male", "female", "other"],
-    },
     hashed_password: {
       type: String,
       required: true,
-    },
-    role: {
-      type: String,
-      enum: ["admin", "member"],
-      default: "admin",
     },
     mobile: {
       type: Number,
       trim: true,
       required: true,
     },
-    member: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Member",
+    role: {
+      type: String,
+      enum: ["SuperAdmin", "GymOwner"],
+      default: "GymOwner",
+    },
+    gymTitle: {
+      type: String,
+      trim: true,
       required: false,
+    },
+    gymLocation: {
+      type: String,
+      trim: true,
+      required: false,
+    },
+    image: {
+      type: String,
+      required: false,
+    },
+    isVerified: {
+      default: false,
     },
     salt: String,
   },
@@ -78,5 +82,4 @@ UserSchema.methods = {
   },
 };
 
-const User = mongoose.model("User", UserSchema);
-module.exports = User;
+module.exports = mongoose.model("User", UserSchema);

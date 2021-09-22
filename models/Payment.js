@@ -8,7 +8,7 @@ const PaymentSchema = new mongoose.Schema(
     },
     paymentType: {
       type: String,
-      enum: ["Admission", "Monthly"],
+      enum: ["Admission", "Monthly", "Package"],
       required: true,
     },
     paymentMonth: {
@@ -28,9 +28,9 @@ const PaymentSchema = new mongoose.Schema(
         "December",
       ],
     },
-    user: {
+    member: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
+      ref: "Member",
       required: true,
     },
   },
