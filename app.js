@@ -17,6 +17,7 @@ app.get("/", (req, re) => {
 });
 
 app.use("/gymapi/users", require("./routes/user.js"));
+app.use("/gymapi/members", require("./routes/member.js"));
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);

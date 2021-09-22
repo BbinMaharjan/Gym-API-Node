@@ -47,24 +47,27 @@ const MemberSchema = new mongoose.Schema(
     trainer: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Trainer",
-      required: true,
+      required: false,
     },
     memberPackage: {
-      type: mongoose.Schema.Types.objectId,
+      type: mongoose.Schema.Types.ObjectId,
       ref: "MemberPackage",
+      required: false,
     },
     gymExercise: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "GymExercise",
+      required: false,
     },
     memberWorkoutPlan: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "MemberWorkoutPlan",
+      required: false,
     },
     gymOwner: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
-      required: true,
+      required: false,
     },
   },
   { timestamps: true }
