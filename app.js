@@ -16,6 +16,8 @@ app.get("/", (req, re) => {
   res.redirect("/gymapi/users");
 });
 
+app.use("/gymapi/gymequipments", require("./routes/gymEquipment"));
+
 app.use("/gymapi/users", require("./routes/user.js"));
 app.use("/gymapi/members", require("./routes/member.js"));
 app.use("/gymapi/trainers", require("./routes/trainer.js"));

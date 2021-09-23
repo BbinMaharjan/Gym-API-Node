@@ -5,16 +5,18 @@ const GymEquipmentSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  equipmentDescription: {
+    type: String,
+    required: false,
+  },
   equipmentQuantity: {
     type: Number,
     required: true,
   },
-  gymOwner: [
-    {
-      type: mongoose.Types.ObjectId,
+  gymOwner: {
+      type: mongoose.Schema.Types.ObjectId,
       ref: "User",
     },
-  ],
 });
 
 const GymEquipment = mongoose.model("GymEquipment", GymEquipmentSchema);
