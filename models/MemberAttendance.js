@@ -2,23 +2,21 @@ const mongoose = require("mongoose");
 
 const MemberAttendanceSchema = new mongoose.Schema(
   {
-    member: [
-      {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Member",
-        required: true,
-      },
-    ],
+    members: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Member",
+      require: false,
+    },
     day: {
       type: String,
       enum: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
     },
     entryTime: {
-      type: TimeRanges,
+      type: String,
       required: true,
     },
     exitTime: {
-      type: TimeRanges,
+      type: String,
       required: true,
     },
   },

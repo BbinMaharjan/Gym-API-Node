@@ -14,9 +14,9 @@ const GymEquipmentSchema = new mongoose.Schema({
     required: true,
   },
   gymOwner: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
-    },
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+  },
 });
 
 const GymEquipment = mongoose.model("GymEquipment", GymEquipmentSchema);

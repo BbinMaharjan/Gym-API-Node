@@ -49,6 +49,11 @@ const MemberSchema = new mongoose.Schema(
       ref: "Trainer",
       required: false,
     },
+    memberAttendance: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "MemberAttendance",
+      required: false,
+    },
     memberPackage: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "MemberPackage",

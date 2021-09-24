@@ -7,6 +7,6 @@ const {
 
 router.get("/", getAllGymEquipment);
 
-router.post("/addgymequipment", addGymEquipment);
+router.post("/addgymequipment/:id", addGymEquipment);
 
 module.exports = router;

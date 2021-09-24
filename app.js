@@ -17,9 +17,15 @@ app.get("/", (req, re) => {
 });
 
 app.use("/gymapi/gymequipments", require("./routes/gymEquipment"));
+app.use("/gymapi/gymexercises", require("./routes/gymExercise"));
 
 app.use("/gymapi/users", require("./routes/user.js"));
+
 app.use("/gymapi/members", require("./routes/member.js"));
+app.use("/gymapi/membersattendances", require("./routes/memberAttendance"));
+app.use("/gymapi/memberspackages", require("./routes/memberPackage"));
+app.use("/gymapi/memberspayments", require("./routes/payment"));
+
 app.use("/gymapi/trainers", require("./routes/trainer.js"));
 
 app.listen(PORT, () => {

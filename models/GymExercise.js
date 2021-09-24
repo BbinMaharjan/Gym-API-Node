@@ -5,10 +5,6 @@ const GymExerciseSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  exerciseSubTitle: {
-    type: String,
-    required: true,
-  },
   exerciseDescription: {
     type: String,
     required: true,

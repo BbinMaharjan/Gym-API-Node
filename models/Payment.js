@@ -31,7 +31,6 @@ const PaymentSchema = new mongoose.Schema(
     member: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Member",
-      required: true,
     },
   },
   { timestamps: true }
