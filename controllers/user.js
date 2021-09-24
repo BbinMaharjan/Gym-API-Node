@@ -35,7 +35,7 @@ exports.registerUser = async (req, res) => {
     const userExists = await User.findOne({ email: email });
 
     if (userExists) {
-      res.status(400).json({ error: "User already exists" });
+      return res.status(400).json({ error: "User already exists" });
     }
 
     const user = new User({
@@ -68,7 +68,7 @@ exports.loginUser = async (req, res) => {
     const user = await User.findOne({ email: email });
 
     if (!user) {
-      res.status(400).json({ error: "User does not exist" });
+      return res.status(400).json({ error: "User does not exist" });
     }
 
     if (!user.authenticate(password)) {
