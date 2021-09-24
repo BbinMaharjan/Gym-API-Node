@@ -9,15 +9,17 @@ const {
   deleteMember,
 } = require("../controllers/member");
 
+const { isGymOwner } = require("../middlewares/auth/gymOwner");
+
 const { registerMemberValidator } = require("../middlewares/validators/member");
 
-router.get("/", getAllMember);
+router.get("/", isGymOwner, getAllMember);
 
-router.post("/addmember", [...registerMemberValidator], addMember);
+router.post("/addmember", isGymOwner, [...registerMemberValidator], addMember);
 
-// router.put("/:memberId", updateMember);
+router.put("/gymmembers/:memberId", isGymOwner, updateMember);
 
-// router.delete("/:memberId", deleteMember);
+router.delete("/gymmembers/:memberId", isGymOwner, deleteMember);
 
 router.param("memberId", async (req, res, next, id) => {
   const member = await Member.findById(id);

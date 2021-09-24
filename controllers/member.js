@@ -1,8 +1,10 @@
 const Member = require("../models/Member");
 const { validationResult } = require("express-validator");
 
+// add New gym member
 exports.addMember = async (req, res) => {
   try {
+    gymOwnerId = req.gymOwner.id;
     const {
       membershipNo,
       name,
@@ -38,6 +40,7 @@ exports.addMember = async (req, res) => {
       joinDate,
       sift,
       image,
+      gymOwner: gymOwnerId,
     });
     await member.save();
     res.status(200).json({ message: "Member Added", member });
@@ -46,11 +49,54 @@ exports.addMember = async (req, res) => {
   }
 };
 
+// Get All Gym Members
 exports.getAllMember = async (req, res) => {
   try {
-    const result = await Member.find().sort({ createdAt: -1 });
+    const result = await Member.find()
+      .sort({ createdAt: -1 })
+      .populate("gymOwner", "name gymTitle gymLocation mobile");
     res.status(200).json({ Member: result });
   } catch {
     res.status(500).json({ error: "Internal error occurred" });
   }
+};
+
+// update gym member by member id
+exports.updateMember = async (req, res) => {
+  try {
+    if (!req.body) {
+      return res.status(400).send({ message: "Data can not be empty!" });
+    }
+
+    const result = await Member.findByIdAndUpdate(
+      req.memberprofile._id,
+      req.body,
+      { useFindAndModify: false }
+    );
+    if (!result) {
+      res.status(400).send({ message: `User not found` });
+    } else res.send({ message: `User data Updated successfully.` });
+  } catch (err) {
+    res.status(500).send({ message: `Update Errorr` });
+  }
+};
+
+// delete gymmember by id
+exports.deleteMember = async (req, res) => {
+  const memberid = req.memberprofile._id;
+  await Member.findByIdAndDelete(memberid)
+    .then((result) => {
+      if (!result) {
+        res.status(404).send({
+          message: `Member was not found!`,
+        });
+      } else {
+        res.send({
+          message: `Member deleted successfully!`,
+        });
+      }
+    })
+    .catch((err) => {
+      res.status(500).json({ error: "Internal error occurred" });
+    });
 };
