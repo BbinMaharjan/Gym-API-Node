@@ -74,8 +74,10 @@ exports.updateMember = async (req, res) => {
       { useFindAndModify: false }
     );
     if (!result) {
-      res.status(400).send({ message: `User not found` });
-    } else res.send({ message: `User data Updated successfully.` });
+      return res.status(400).send({ message: `Member not found` });
+    } else {
+      return res.send({ message: `Member data Updated successfully.` });
+    }
   } catch (err) {
     res.status(500).send({ message: `Update Errorr` });
   }
@@ -87,16 +89,23 @@ exports.deleteMember = async (req, res) => {
   await Member.findByIdAndDelete(memberid)
     .then((result) => {
       if (!result) {
-        res.status(404).send({
-          message: `Member was not found!`,
-        });
+        return res.status(404).send({ message: `Member was not found!` });
       } else {
-        res.send({
-          message: `Member deleted successfully!`,
-        });
+        return res.send({ message: `Member deleted successfully!` });
       }
     })
     .catch((err) => {
       res.status(500).json({ error: "Internal error occurred" });
     });
+};
+
+exports.memberById = async (req, res, next, id) => {
+  const member = await Member.findById(id);
+  if (!member) {
+    return res.status(400).json({
+      error: "Member Not Found",
+    });
+  }
+  req.memberprofile = member;
+  next();
 };

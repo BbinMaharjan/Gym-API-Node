@@ -1,5 +1,4 @@
 const express = require("express");
-const Member = require("../models/Member");
 const router = express.Router();
 
 const {
@@ -7,6 +6,7 @@ const {
   addMember,
   updateMember,
   deleteMember,
+  memberById,
 } = require("../controllers/member");
 
 const { isGymOwner } = require("../middlewares/auth/gymOwner");
@@ -21,15 +21,6 @@ router.put("/gymmembers/:memberId", isGymOwner, updateMember);
 
 router.delete("/gymmembers/:memberId", isGymOwner, deleteMember);
 
-router.param("memberId", async (req, res, next, id) => {
-  const member = await Member.findById(id);
-  if (!member) {
-    return res.status(400).json({
-      error: "Member Not Found",
-    });
-  }
-  req.memberprofile = member;
-  next();
-});
+router.param("memberId", memberById);
 
 module.exports = router;

@@ -14,8 +14,7 @@ exports.getAllGymEquipment = async (req, res) => {
 
 exports.addGymEquipment = async (req, res) => {
   try {
-    gymOwner = req.params;
-    gymOwnerId = gymOwner.id;
+    gymOwnerId = req.gymOwner.id;
     const { equipmentTitle, equipmentDescription, equipmentQuantity } =
       req.body;
 
@@ -23,7 +22,7 @@ exports.addGymEquipment = async (req, res) => {
       equipmentTitle: equipmentTitle,
     });
     if (Exists) {
-      res.status(400).json({ error: "Equipment already exists" });
+      return res.status(400).json({ error: "Equipment already exists" });
     }
 
     const gymEquipment = new GymEquipment({
@@ -37,4 +36,49 @@ exports.addGymEquipment = async (req, res) => {
   } catch (err) {
     res.status(500).json({ error: "Internal error occurred" });
   }
+};
+
+exports.updateGymEquipment = async (req, res) => {
+  try {
+    if (!req.body) {
+      return res.status(400).send({ message: "Data can not be empty!" });
+    }
+
+    const result = await GymEquipment.findByIdAndUpdate(
+      req.gymequipment._id,
+      req.body,
+      { useFindAndModify: false }
+    );
+    if (!result) {
+      return res.status(400).send({ message: `GymEquipment not found` });
+    } else {
+      return res.send({ message: `GymEquipmentr data Updated successfully.` });
+    }
+  } catch (err) {
+    res.status(500).send({ message: `Update Errorr` });
+  }
+};
+
+// delete gymGymEquipment by id
+exports.deleteGymEquipment = async (req, res) => {
+  const gymeuipmentId = req.gymequipment._id;
+  await GymEquipment.findByIdAndDelete(gymeuipmentId)
+    .then((result) => {
+      if (!result) {
+        return res.status(404).send({ message: `GymEquipment not found!` });
+      } else {
+        return res.send({ message: `GymEquipment deleted successfully!` });
+      }
+    })
+    .catch((err) => {
+      res.status(500).json({ error: "Internal error occurred" });
+    });
+};
+exports.gymequipmentById = async (req, res, next, id) => {
+  const gymequipment = await GymEquipment.findById(id);
+  if (!gymequipment) {
+    return res.status(400).json({ error: "gymequipment Not Found" });
+  }
+  req.gymequipment = gymequipment;
+  next();
 };
