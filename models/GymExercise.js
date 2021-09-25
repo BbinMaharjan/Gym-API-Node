@@ -13,7 +13,7 @@ const GymExerciseSchema = new mongoose.Schema({
     type: String,
   },
   gymOwner: {
-    type: mongoose.Types.ObjectId,
+    type: mongoose.Schema.Types.ObjectId,
     ref: "User",
   },
 });
