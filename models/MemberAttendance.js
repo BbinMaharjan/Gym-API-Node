@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const MemberAttendanceSchema = new mongoose.Schema(
   {
-    members: {
+    gymMember: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Member",
       require: false,
@@ -18,6 +18,10 @@ const MemberAttendanceSchema = new mongoose.Schema(
     exitTime: {
       type: String,
       required: true,
+    },
+    gymOwner: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
     },
   },
   { timestamps: true }

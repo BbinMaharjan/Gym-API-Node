@@ -5,8 +5,10 @@ const {
   addmemberAttendance,
 } = require("../controllers/memberAttendance");
 
-router.get("/", getAllmemberAttendance);
+const { isGymOwner } = require("../middlewares/auth/gymOwner");
 
-router.post("/addmemberAttendance", addmemberAttendance);
+router.get("/", isGymOwner, getAllmemberAttendance);
+
+router.post("/addmemberAttendance", isGymOwner, addmemberAttendance);
 
 module.exports = router;
