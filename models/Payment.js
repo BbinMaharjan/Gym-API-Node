@@ -2,8 +2,9 @@ const mongoose = require("mongoose");
 
 const PaymentSchema = new mongoose.Schema(
   {
-    paidAmount: {
-      type: Number,
+    gymMember: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Member",
       required: true,
     },
     paymentType: {
@@ -28,9 +29,14 @@ const PaymentSchema = new mongoose.Schema(
         "December",
       ],
     },
-    member: {
+    paidAmount: {
+      type: Number,
+      required: true,
+    },
+    gymOwner: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Member",
+      ref: "User",
+      required: true,
     },
   },
   { timestamps: true }
