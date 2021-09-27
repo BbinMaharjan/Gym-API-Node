@@ -7,6 +7,7 @@ const PaymentSchema = new mongoose.Schema(
       ref: "Member",
       required: true,
     },
+
     paymentType: {
       type: String,
       enum: ["Admission", "Monthly", "Package"],

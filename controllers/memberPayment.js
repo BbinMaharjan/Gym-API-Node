@@ -72,7 +72,7 @@ exports.deleteMemberPayment = async (req, res) => {
 
 exports.getPaymentByMemberId = async (req, res) => {
   try {
-    const result = await Payment.findOne({
+    const result = await Payment.find({
       gymMember: ObjectId(req.params.memberId),
     }).populate("gymMember", " membershipNo name");
 
