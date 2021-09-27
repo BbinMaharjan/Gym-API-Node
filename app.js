@@ -1,9 +1,14 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const expressValidator = require("express-validator");
 const app = express();
 const PORT = 8080;
-app.use(express.json());
 
+// Middlerware
+app.use(express.json());
+app.use(express.static("public"));
+
+// Database Connenction
 mongoose
   .connect(
     "mongodb+srv://bbin:bbin123@gym.3psoy.mongodb.net/gym-api?retryWrites=true&w=majority"
@@ -12,6 +17,7 @@ mongoose
     console.log("Database Connected");
   });
 
+// Routes
 app.get("/", (req, re) => {
   res.redirect("/gymapi/users");
 });

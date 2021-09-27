@@ -8,10 +8,16 @@ const {
   gymExerciseById,
 } = require("../controllers/gymExercise");
 const { isGymOwner } = require("../middlewares/auth/gymOwner");
+const { uploadGymExerciseImage } = require("../helper/multer");
 
 router.get("/", isGymOwner, getAllgymExercise);
 
-router.post("/addgymExercise", isGymOwner, addgymExercise);
+router.post(
+  "/addgymExercise",
+  isGymOwner,
+  uploadGymExerciseImage,
+  addgymExercise
+);
 
 router.put("/gymExercise/:gymExerciseId", isGymOwner, updategymExercise);
 

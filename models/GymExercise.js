@@ -3,13 +3,13 @@ const mongoose = require("mongoose");
 const GymExerciseSchema = new mongoose.Schema({
   exerciseTitle: {
     type: String,
-    required: true,
+    required: false,
   },
   exerciseDescription: {
     type: String,
-    required: true,
+    required: false,
   },
-  exercisePhoto: {
+  image: {
     type: String,
   },
   gymOwner: {

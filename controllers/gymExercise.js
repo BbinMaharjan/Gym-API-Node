@@ -1,4 +1,6 @@
 const GymExercise = require("../models/GymExercise");
+const sharp = require("sharp");
+const path = require("path");
 
 exports.getAllgymExercise = async (req, res) => {
   try {
@@ -14,15 +16,27 @@ exports.getAllgymExercise = async (req, res) => {
 exports.addgymExercise = async (req, res) => {
   try {
     gymOwnerId = req.gymOwner.id;
-    const { exerciseTitle, exerciseDescription, exercisePhoto } = req.body;
+    const { exerciseTitle, exerciseDescription } = req.body;
+
+    const exerciseExists = await GymExercise.findOne({
+      exerciseTitle: exerciseTitle,
+    });
+    if (exerciseExists)
+      return res.status(403).json({
+        error: "Exercise is already added!",
+      });
+    const { filename: image } = req.file;
+
+    req.body.image = image;
 
     const gymExercise = new GymExercise({
       exerciseTitle,
       exerciseDescription,
-      exercisePhoto,
+      image,
       gymOwner: gymOwnerId,
     });
 
+    //console.log(gymExercise);
     await gymExercise.save();
     res.status(200).json({ Message: " Gym Exercise Added", gymExercise });
   } catch (err) {
