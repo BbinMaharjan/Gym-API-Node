@@ -10,3 +10,10 @@ exports.registerMemberValidator = [
   body("address").notEmpty().withMessage("address can not be empty"),
   body("mobile").notEmpty().withMessage("mobile can not be empty"),
 ];
+
+exports.loginMemberValidator = [
+  body("name").notEmpty().withMessage("name can not be empty"),
+  body("membershipNo")
+    .notEmpty()
+    .withMessage("membership number can not be empty"),
+];

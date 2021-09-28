@@ -35,6 +35,8 @@ app.use("/gymapi/memberspayments", require("./routes/payment"));
 
 app.use("/gymapi/trainers", require("./routes/trainer.js"));
 
+app.use("/gymapi/member", require("./routes/memberDashboard"));
+
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
