@@ -1,6 +1,5 @@
 const Member = require("../models/Member");
 const { validationResult } = require("express-validator");
-
 // add New gym member
 exports.addMember = async (req, res) => {
   try {

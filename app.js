@@ -30,6 +30,7 @@ app.use("/gymapi/users", require("./routes/user.js"));
 app.use("/gymapi/members", require("./routes/member.js"));
 app.use("/gymapi/membersattendances", require("./routes/memberAttendance"));
 app.use("/gymapi/memberspackages", require("./routes/memberPackage"));
+app.use("/gymapi/membersworkoutplan", require("./routes/memberWorkoutPlan"));
 app.use("/gymapi/memberspayments", require("./routes/payment"));
 
 app.use("/gymapi/trainers", require("./routes/trainer.js"));

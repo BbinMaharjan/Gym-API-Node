@@ -16,6 +16,10 @@ const GymExerciseSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
   },
+  gymMember: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Member",
+  },
 });
 
 const GymExercise = mongoose.model("GymExercise", GymExerciseSchema);

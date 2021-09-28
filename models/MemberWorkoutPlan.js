@@ -1,19 +1,29 @@
 const mongoose = require("mongoose");
 
-const MemberWorkoutPlanSchema = new mongoose.Schema({
-  planTitle: {
-    type: String,
-    required: true,
+const MemberWorkoutPlanSchema = new mongoose.Schema(
+  {
+    gymMember: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Member",
+    },
+    planTitle: {
+      type: String,
+      trim: true,
+      required: true,
+    },
+    exerciseDay: {
+      type: String,
+      emu: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+    },
+    gymExercise: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "gymExercise",
+      },
+    ],
   },
-  exerciseDay: {
-    type: String,
-    emu: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-  },
-  gymExercise: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "gymExercise",
-  },
-});
+  { timestamps: true }
+);
 
 const MemberWorkoutPlan = mongoose.model(
   "MemberWorkoutPlan",
