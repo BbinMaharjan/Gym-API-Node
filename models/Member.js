@@ -4,25 +4,32 @@ const MemberSchema = new mongoose.Schema(
   {
     membershipNo: {
       type: Number,
+      trim: true,
+      maxlenght: 999999,
       required: true,
     },
     name: {
       type: String,
       trim: true,
+      maxlenght: 32,
       required: true,
     },
     email: {
       type: String,
       trim: true,
+      maxlenght: 32,
       required: true,
     },
     address: {
       type: String,
+      trim: true,
+      maxlenght: 100,
       required: true,
     },
     gender: {
       type: String,
       enum: ["male", "female", "other"],
+      required: true,
     },
     dob: {
       type: Date,
@@ -31,6 +38,7 @@ const MemberSchema = new mongoose.Schema(
     mobile: {
       type: Number,
       trim: true,
+      maxlenght: 10,
       required: true,
     },
     joinDate: {
@@ -72,7 +80,7 @@ const MemberSchema = new mongoose.Schema(
     gymOwner: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
-      required: false,
+      required: true,
     },
   },
   { timestamps: true }

@@ -30,8 +30,14 @@ const PaymentSchema = new mongoose.Schema(
         "December",
       ],
     },
+    paymentPackage: {
+      type: String,
+      enum: ["Yearly", "Half Yearly", "Quarterly"],
+    },
+
     paidAmount: {
       type: Number,
+      maxlength: 100,
       required: true,
     },
     gymOwner: {

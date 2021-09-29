@@ -2,6 +2,9 @@ const mongoose = require("mongoose");
 
 const MemberScanSchema = new mongoose.Schema(
   {
+    imageQR: {
+      type: String,
+    },
     day: {
       type: String,
       emu: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],

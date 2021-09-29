@@ -7,11 +7,13 @@ const UserSchema = new mongoose.Schema(
     name: {
       type: String,
       trim: true,
+      maxlenght: 32,
       required: true,
     },
     email: {
       type: String,
       trim: true,
+      maxlenght: 32,
       required: true,
     },
     hashed_password: {

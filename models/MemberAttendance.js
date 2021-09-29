@@ -5,7 +5,7 @@ const MemberAttendanceSchema = new mongoose.Schema(
     gymMember: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Member",
-      require: false,
+      require: true,
     },
     day: {
       type: String,

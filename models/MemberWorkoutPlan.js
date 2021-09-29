@@ -9,6 +9,7 @@ const MemberWorkoutPlanSchema = new mongoose.Schema(
     planTitle: {
       type: String,
       trim: true,
+      maxlength: 100,
       required: true,
     },
     exerciseDay: {

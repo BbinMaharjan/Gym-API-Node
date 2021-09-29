@@ -5,18 +5,25 @@ const TrainerSchema = new mongoose.Schema(
     name: {
       type: String,
       trim: true,
+      maxlength: 32,
       required: true,
     },
     email: {
       type: String,
+      trim: true,
+      maxlength: 32,
       required: true,
     },
     address: {
       type: String,
+      trim: true,
+      maxlength: 100,
       required: true,
     },
     mobile: {
       type: Number,
+      trim: true,
+      maxlength: 10,
       required: true,
     },
     experience: {
