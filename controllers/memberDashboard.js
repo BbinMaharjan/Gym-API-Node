@@ -43,8 +43,8 @@ exports.loginMember = async (req, res) => {
 
 exports.getMemberProfile = async (req, res) => {
   try {
-    gymMember = req.member._id;
-    const result = await Member.findOne(gymMember).select(
+    gymMember = req.member.membershipNo;
+    const result = await Member.findOne({ membershipNo: gymMember }).select(
       "membershipNo name email address gender dob mobile "
     );
     res.status(200).json({ message: "Member Profile", result });
@@ -85,8 +85,8 @@ exports.getMemberWorkoutPlan = async (req, res) => {
       gymMember: ObjectId(memberId),
     })
       .sort({ createdAt: -1 })
-      .populate("gymMember", "name ");
-    //.populate("gymExercise");
+      .populate("gymMember", "name ")
+      .populate("gymExercise", "exerciseTitle exerciseDescription");
     res.status(200).json({ message: "All Member Workout Plan", result });
   } catch (err) {
     res.status(500).json({ error: "Internal error occurred" });

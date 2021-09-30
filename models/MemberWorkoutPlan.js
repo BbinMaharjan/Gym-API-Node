@@ -19,7 +19,7 @@ const MemberWorkoutPlanSchema = new mongoose.Schema(
     gymExercise: [
       {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "gymExercise",
+        ref: "GymExercise",
       },
     ],
   },
