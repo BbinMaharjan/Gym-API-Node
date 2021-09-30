@@ -1,6 +1,5 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const expressValidator = require("express-validator");
 const app = express();
 const PORT = 8080;
 
@@ -35,6 +34,8 @@ app.use("/gymapi/memberspayments", require("./routes/payment"));
 
 app.use("/gymapi/trainers", require("./routes/trainer.js"));
 
+app.use("/gymapi/admin", require("./routes/adminDashboard"));
+//app.use("/gymapi/gymowner", require("./routes/gymownerDashboard"));
 app.use("/gymapi/member", require("./routes/memberDashboard"));
 
 app.listen(PORT, () => {
