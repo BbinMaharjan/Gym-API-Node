@@ -35,7 +35,7 @@ app.use("/gymapi/memberspayments", require("./routes/payment"));
 app.use("/gymapi/trainers", require("./routes/trainer.js"));
 
 app.use("/gymapi/admin", require("./routes/adminDashboard"));
-//app.use("/gymapi/gymowner", require("./routes/gymownerDashboard"));
+app.use("/gymapi/gymowner", require("./routes/gymOwnerDashboard"));
 app.use("/gymapi/member", require("./routes/memberDashboard"));
 
 app.listen(PORT, () => {
